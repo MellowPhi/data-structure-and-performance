@@ -1,12 +1,12 @@
 # data-structure-and-performance
-/-------------------------------------------------------------------------
-/ Starter Code and GUI Application for Course 2 in the
-/ Java Programming: Object Oriented Design of 
-/ Data Structures Specialization:
-/
-/ Data structures: Measuring and Optimizing Performance
-/ https://www.coursera.org/learn/data-structures-optimizing-performance
-/
+-------------------------------------------------------------------------
+
+Starter Code and GUI Application for Course 2 in the
+Java Programming: Object Oriented Design of Data Structures Specialization:
+
+Data structures: Measuring and Optimizing Performance
+https://www.coursera.org/learn/data-structures-optimizing-performance
+
 
 
 Week 1 : Introduction and Working with Strings
@@ -39,7 +39,7 @@ Week 5 : Hash Maps and Edit Distance
 - spelling.NearbyWords.java
 - spelling.WPTree.java
 
----------------------------------------------------------------[ SETUP ]-- 
+### Setup
 
 Importing Project into eclipse:
     1. Create a new Java Project in your workspace
@@ -50,7 +50,7 @@ Importing Project into eclipse:
 Feel free to use another IDE or manually compile and run your programs.
 If you need help, google is your friend.
 
------------------------------------------------------[ ACKNOWLEDGEMENTS]--
+### Acknowledgements
 
 A big thank you to Tomas Mikula for creating RichTextFX 
 which was used as the text area in the GUI application.
