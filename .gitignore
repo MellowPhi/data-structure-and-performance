@@ -3,3 +3,4 @@ grader_output
 out
 **.zip**
 **.log**
+.DS_Store
