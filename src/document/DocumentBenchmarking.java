@@ -17,7 +17,7 @@ public class DocumentBenchmarking {
 
 	    // Run each test more than once to get bigger numbers and less noise.
 	    // You can try playing around with this number.
-	    int trials = 200;
+	    int trials = 300;
 
 	    // The text to test on
 	    String textfile = "data/warAndPeace.txt";
@@ -28,7 +28,7 @@ public class DocumentBenchmarking {
 
 		// The number of steps to run.  
 		// You can play around with this.
-		int numSteps = 20;
+		int numSteps = 50;
 		
 		// THe number of characters to start with. 
 		// You can play around with this.

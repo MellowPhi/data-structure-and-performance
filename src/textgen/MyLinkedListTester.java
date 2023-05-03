@@ -59,39 +59,39 @@ public class MyLinkedListTester {
 			fail("Check out of bounds");
 		}
 		catch (IndexOutOfBoundsException e) {
-			
+
 		}
-		
+
 		// test short list, first contents, then out of bounds
 		assertEquals("Check first", "A", shortList.get(0));
 		assertEquals("Check second", "B", shortList.get(1));
-		
+
 		try {
 			shortList.get(-1);
 			fail("Check out of bounds");
 		}
 		catch (IndexOutOfBoundsException e) {
-		
+
 		}
 		try {
 			shortList.get(2);
 			fail("Check out of bounds");
 		}
 		catch (IndexOutOfBoundsException e) {
-		
+
 		}
 		// test longer list contents
 		for(int i = 0; i<LONG_LIST_LENGTH; i++ ) {
 			assertEquals("Check "+i+ " element", (Integer)i, longerList.get(i));
 		}
-		
+
 		// test off the end of the longer array
 		try {
 			longerList.get(-1);
 			fail("Check out of bounds");
 		}
 		catch (IndexOutOfBoundsException e) {
-		
+
 		}
 		try {
 			longerList.get(LONG_LIST_LENGTH);
@@ -99,9 +99,9 @@ public class MyLinkedListTester {
 		}
 		catch (IndexOutOfBoundsException e) {
 		}
-		
+
 	}
-	
+
 	
 	/** Test removing an element from the list.
 	 * We've included the example from the concept challenge.
@@ -113,7 +113,7 @@ public class MyLinkedListTester {
 		assertEquals("Remove: check a is correct ", 65, a);
 		assertEquals("Remove: check element 0 is correct ", (Integer)21, list1.get(0));
 		assertEquals("Remove: check size is correct ", 2, list1.size());
-		
+
 		// TODO: Add more tests here
 	}
 	
@@ -124,7 +124,30 @@ public class MyLinkedListTester {
 	public void testAddEnd()
 	{
         // TODO: implement this test
-		
+		// Check for NPE when null is added
+		try {
+			new MyLinkedList<String>().add(null);
+			fail("Cannot add a null element");
+		} catch (NullPointerException e) {
+
+		}
+
+		// Check adding to empty list
+		boolean value = emptyList.add(42424242);
+		assertEquals("Test empty list: check if the element is correct", (Integer) 42424242,  emptyList.get(0));
+		assertEquals("Test empty list: check the return value by the method", true, value);
+		assertEquals("Test empty list: check if the size if correctly updated",1, emptyList.size());
+
+		// Check adding to non-empty list
+		value = shortList.add("C");
+		String[] expected = {"A", "B", "C"};
+		String[] actual = new String[expected.length];
+		for (int i = 0; i < actual.length; i++) {
+			actual[i] = shortList.get(i);
+		}
+		assertArrayEquals("Test non-empty list: check if the elements are correctly added", actual, expected);
+		assertEquals("Test non-empty list: check the return value", true, value);
+		assertEquals("Test non-empty list: check if the size if correctly updated", expected.length, shortList.size());
 	}
 
 	

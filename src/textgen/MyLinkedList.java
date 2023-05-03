@@ -1,5 +1,7 @@
 package textgen;
 
+import org.reactfx.util.LL;
+
 import java.util.AbstractList;
 
 
@@ -10,6 +12,7 @@ import java.util.AbstractList;
  * @param <E> The type of the elements stored in the list
  */
 public class MyLinkedList<E> extends AbstractList<E> {
+
 	LLNode<E> head;
 	LLNode<E> tail;
 	int size;
@@ -17,16 +20,41 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	/** Create a new empty LinkedList */
 	public MyLinkedList() {
 		// TODO: Implement this method
+		// Create a head and tail sentinel nodes.
+		size = 0;
+		head = new LLNode<E>(null);
+		tail = new LLNode<E>(null);
+		head.next = tail;
+		tail.prev = head;
 	}
 
 	/**
 	 * Appends an element to the end of the list
 	 * @param element The element to add
 	 */
-	public boolean add(E element ) 
+	public boolean add(E element)
 	{
 		// TODO: Implement this method
-		return false;
+		if (element == null) {
+			throw new NullPointerException();
+		}
+		// Create a Node and assign element as the value
+		// Refactor the references
+		// Increment the size of the linkedlist
+		LLNode<E> newNode = new LLNode<E>(element);
+		if (this.size == 0) {
+			newNode.next = head.next;
+			newNode.prev = newNode.next.prev;
+			newNode.next.prev = newNode;
+			newNode.prev.next = newNode;
+			this.size += 1;
+		} else {
+			newNode.prev = tail.prev;
+			newNode.next = tail;
+			newNode.next.prev = newNode;
+			newNode.prev.next = newNode;
+		}
+		return true;
 	}
 
 	/** Get the element at position index 
@@ -52,7 +80,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public int size() 
 	{
 		// TODO: Implement this method
-		return -1;
+		return this.size;
 	}
 
 	/** Remove a node at the specified index and return its data element.
@@ -83,6 +111,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 
 class LLNode<E> 
 {
+	// Recursive definition
 	LLNode<E> prev;
 	LLNode<E> next;
 	E data;
