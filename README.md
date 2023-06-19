@@ -17,6 +17,8 @@ Week 1 : Introduction and Working with Strings
 Week 2 : Efficiency Analysis and Benchmarking
 =============================================
 - document.EfficientDocument.java
+Benchmark performance between BasicDocument and EfficientDocument.
+![img.png](img.png)
 
 Week 3 : Interfaces, Linked Lists vs. Arrays, and Correctness
 =============================================================
