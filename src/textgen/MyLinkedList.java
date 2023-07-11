@@ -1,7 +1,5 @@
 package textgen;
 
-import org.reactfx.util.LL;
-
 import java.util.AbstractList;
 
 
@@ -42,18 +40,13 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		// Refactor the references
 		// Increment the size of the linkedlist
 		LLNode<E> newNode = new LLNode<E>(element);
-		if (this.size == 0) {
-			newNode.next = head.next;
-			newNode.prev = newNode.next.prev;
-			newNode.next.prev = newNode;
-			newNode.prev.next = newNode;
-			this.size += 1;
-		} else {
-			newNode.prev = tail.prev;
-			newNode.next = tail;
-			newNode.next.prev = newNode;
-			newNode.prev.next = newNode;
-		}
+		LLNode<E> lastNode = tail.prev;
+
+		lastNode.next = newNode;
+		newNode.prev = lastNode;
+		newNode.next = tail;
+		tail.prev = newNode;
+		size++;
 		return true;
 	}
 
@@ -62,7 +55,15 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E get(int index) 
 	{
 		// TODO: Implement this method.
-		return null;
+		if (index < 0 || index >= this.size) {
+			throw new IndexOutOfBoundsException("Index out of bounds");
+		}
+
+		LLNode<E> current = head.next;
+		for (int i = 0; i < index; i++) {
+			current = current.next;
+		}
+		return current.data;
 	}
 
 	/**
@@ -73,6 +74,27 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public void add(int index, E element ) 
 	{
 		// TODO: Implement this method
+		if (index < 0 || index > this.size()) {
+			throw new IndexOutOfBoundsException("Invalid index");
+		}
+		if (element == null) {
+			throw new NullPointerException();
+		}
+		// If the index is at the end, append to the last of the list
+		if (index == this.size()) {
+			add(element);
+			return;
+		}
+		LLNode<E> newNode = new LLNode<>(element);
+		LLNode<E> current = head.next;
+		for (int i = 0; i < index; i++) {
+			current = current.next;
+		}
+		newNode.next = current;
+		newNode.prev = current.prev;
+		current.prev = newNode;
+		newNode.prev.next = newNode;
+		size++;
 	}
 
 
@@ -92,7 +114,21 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E remove(int index) 
 	{
 		// TODO: Implement this method
-		return null;
+		if (index < 0 || index >= this.size) {
+			throw new IndexOutOfBoundsException("Index out of bounds");
+		}
+
+		LLNode<E> current = head.next;
+		for (int i = 0; i < index; i++) {
+			current = current.next;
+		}
+		current.prev.next = current.next;
+		current.next.prev = current.prev;
+		current.next = null;
+		current.prev = null;
+		size--;
+
+		return current.data;
 	}
 
 	/**
@@ -105,8 +141,35 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public E set(int index, E element) 
 	{
 		// TODO: Implement this method
-		return null;
-	}   
+		if (index < 0 || index > this.size()) {
+			throw new IndexOutOfBoundsException("Invalid index");
+		}
+		if (element == null) {
+			throw new NullPointerException();
+		}
+		LLNode<E> current = head.next;
+		for (int i = 0; i < index; i++) {
+			current = current.next;
+		}
+		E currentData = current.data;
+		current.data = element;
+		return currentData;
+	}
+
+	@Override
+	public String toString() {
+		LLNode<E> current = head;
+		StringBuilder sb = new StringBuilder();
+		int counter = this.size();
+		while (counter >= 0 ) {
+			sb.append(current.data).append(" -> ");
+			current = current.next;
+			counter--;
+		}
+		sb.append("null");
+		return sb.toString();
+
+	}
 }
 
 class LLNode<E> 

@@ -6,7 +6,6 @@ package textgen;
 import static org.junit.Assert.*;
 
 import java.util.LinkedList;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -82,7 +81,7 @@ public class MyLinkedListTester {
 		}
 		// test longer list contents
 		for(int i = 0; i<LONG_LIST_LENGTH; i++ ) {
-			assertEquals("Check "+i+ " element", (Integer)i, longerList.get(i));
+			assertEquals("Check " + i + " element", (Integer)i, longerList.get(i));
 		}
 
 		// test off the end of the longer array
@@ -115,6 +114,7 @@ public class MyLinkedListTester {
 		assertEquals("Remove: check size is correct ", 2, list1.size());
 
 		// TODO: Add more tests here
+
 	}
 	
 	/** Test adding an element into the end of the list, specifically
@@ -156,6 +156,11 @@ public class MyLinkedListTester {
 	public void testSize()
 	{
 		// TODO: implement this test
+		assertEquals("Test Size: ", 2, shortList.size());
+		assertEquals("Test Size: ", 0, emptyList.size());
+		assertEquals("Test Size: ", LONG_LIST_LENGTH, longerList.size());
+		shortList.remove(0);
+		assertEquals("Test Size after removing one element: ", 1, shortList.size());
 	}
 
 	
@@ -168,7 +173,13 @@ public class MyLinkedListTester {
 	public void testAddAtIndex()
 	{
         // TODO: implement this test
-		
+		shortList.add(1, "D");
+		assertEquals("Insert at index 1: ", "B", shortList.get(2));
+		list1.add(3, 69);
+		assertEquals("Insert at the last index: ", (Integer) 69, list1.get(list1.size() - 1));
+		list1.add(0, 96);
+		assertEquals("Insert at the front: ", (Integer) 96 , list1.get(0));
+
 	}
 	
 	/** Test setting an element in the list */
@@ -176,7 +187,15 @@ public class MyLinkedListTester {
 	public void testSet()
 	{
 	    // TODO: implement this test
-	    
+		String oldValue = shortList.set(0, "Z");
+//		String[] expected = {"Z", "B", "C"};
+//		String[] actual = new String[expected.length];
+//		for (int i = 0; i < actual.length; i++) {
+//			actual[i] = shortList.get(i);
+//		}
+		//assertArrayEquals("Test non-empty list: check if the elements are correctly added", actual, expected);
+		assertEquals("Test non-empty list: check the return value", "A", oldValue);
+		//assertEquals("Test non-empty list: check if the size if correctly updated", expected.length, shortList.size());
 	}
 	
 	
